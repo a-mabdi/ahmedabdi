@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Site check</title>
+<style>body{font:16px/1.5 Arial,Helvetica,sans-serif;margin:0;padding:16px;background:#f4f6fa;color:#14181f;max-width:640px}
+h1{font-size:22px;margin:0 0 4px}p{margin:6px 0}.r{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #d9dfeb;border-radius:8px;padding:10px 12px;margin:8px 0}
+.r b{flex:none;width:26px;height:26px;border-radius:50%;color:#fff;text-align:center;line-height:26px}.ok b{background:#1a7f37}.bad b{background:#c8102e}.wait b{background:#999}
+small{color:#55607a;display:block}#sum{font-weight:700;margin:14px 0}</style></head><body>
+<h1>Is the new version live?</h1>
+<p>This page asks your website for each file and checks which version it gets. Expected version: <b id="exp"></b></p>
+<div id="sum">Checking...</div><div id="out"></div>
+<p><small>Page address: <span id="loc"></span></small></p>
+<script>
+const EXPECT='2.0.8';document.getElementById('exp').textContent=EXPECT;document.getElementById('loc').textContent=location.href;
+const rows=[
+ ['script.js (the site code)','script.js',t=>{const m=t.match(/CODE_VERSION='([\d.]+)'/);return m?{ok:m[1]===EXPECT,msg:'version '+m[1]}:{ok:false,msg:'no version found - this is an old script.js'}}],
+ ['styles.css (the layout)','styles.css',t=>({ok:/v2\.0\.8/.test(t),msg:/v2\.0\.8/.test(t)?'new layout found':'old layout - the new styles.css is not live'})],
+ ['index.html (the page)','index.html',t=>({ok:/base href/.test(t)&&t.includes(EXPECT),msg:t.includes(EXPECT)?'new page found':'old page - the new index.html is not live'})],
+ ['admin.js (the dashboard)','admin.js',t=>({ok:/Preview sizes/.test(t),msg:/Preview sizes/.test(t)?'new dashboard found':'old dashboard'})],
+ ['Social icon (images/tiktok.png)','images/tiktok.png',null],
+];
+let good=0;const out=document.getElementById('out');
+(async()=>{for(const [name,path,fn] of rows){
+ const d=document.createElement('div');d.className='r wait';d.innerHTML='<b>?</b><div>'+name+'<small>checking...</small></div>';out.append(d);
+ let ok=false,msg='';
+ try{const r=await fetch('/'+path+'?c='+Date.now(),{cache:'no-store'});
+  if(!r.ok){msg='not found (error '+r.status+')'}
+  else if(!fn){const ct=r.headers.get('content-type')||'';ok=/image/.test(ct);msg=ok?'found':'not an image - file is missing'}
+  else{const t=await r.text();const x=fn(t);ok=x.ok;msg=x.msg}}
+ catch(e){msg='could not load'}
+ d.className='r '+(ok?'ok':'bad');d.innerHTML='<b>'+(ok?'✓':'✕')+'</b><div>'+name+'<small>'+msg+'</small></div>';if(ok)good++}
+ document.getElementById('sum').textContent=good===rows.length?'All good: the new version is live. If your phone still shows the old design, clear that browser\'s data for this site or open the site in a private tab.':'Not everything is live yet ('+good+' of '+rows.length+' correct). Tell Claude which lines show a red cross.'})();
+</script></body></html>
