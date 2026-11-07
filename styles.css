@@ -316,3 +316,22 @@ html.pvframe,html.pvframe body{scrollbar-width:none;-ms-overflow-style:none}html
 .hwrap .soc-d{background:rgba(2,8,26,.5);padding:4px 8px;border-radius:30px}
 @media(max-width:700px){.hwrap .soc-d{padding:3px 6px}.soc-d a{width:22px!important;height:22px!important}}
 @media(max-width:1024px){.soc-m a,nav .soc-m a{width:clamp(22px,6vw,28px)!important;height:clamp(22px,6vw,28px)!important}}
+
+/* ===== v2.0.9 phones: a little more breathing room around the slideshow and at the sides ===== */
+@media(max-width:700px){
+ .g,.below{padding:0 6px}
+ .g{margin:14px auto 8px}
+ .sl{margin-bottom:8px}
+}
+/* Ahmedabdi.uk phones: slimmer menu bar, bigger name that stays clear of the top edge and the menu bar */
+@media(max-width:700px){
+ #hd.bnr{height:clamp(84px,23vw,130px)}
+ #hd .ht1{font-size:13cqw!important;line-height:1.05}
+ #hd .ht2{font-size:max(7px,2.5cqw)!important;letter-spacing:.16em;margin-top:.55em}
+ #hd .htxt{top:52%}
+ .nrow{min-height:36px}
+ .hb{padding:2px 0;font-size:14px}
+ .soc-m a,nav .soc-m a{width:clamp(22px,5.6vw,28px)!important;height:clamp(22px,5.6vw,28px)!important}
+ .sbtn{width:clamp(26px,7vw,32px);height:clamp(26px,7vw,32px)}
+ .sbox input{height:clamp(26px,7vw,32px)}
+}
