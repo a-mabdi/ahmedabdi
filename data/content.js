@@ -13,7 +13,7 @@ window.SITE_DATA={
   "font": "Arial, Helvetica, sans-serif",
   "loginButton": "auto",
   "logo": "",
-  "logoPosition": "left",
+  "logoPosition": "",
   "logoSize": 50,
   "headerStyle": "banner",
   "headerTitle": "Ahmedabdi.uk",
@@ -32,23 +32,23 @@ window.SITE_DATA={
   "social": [
    {
     "network": "TikTok",
-    "url": ""
+    "url": "https://www.tiktok.com/@BlackEast"
    },
    {
     "network": "YouTube",
-    "url": ""
+    "url": "https://www.youtube.com/@AMA-Online"
    },
    {
     "network": "Facebook",
-    "url": ""
+    "url": "https://www.facebook.com/@SomalilandAge"
    },
    {
     "network": "X",
-    "url": ""
+    "url": "https://x.com/A_mabdi"
    },
    {
     "network": "Instagram",
-    "url": ""
+    "url": "https://www.instagram.com/A_mabdi"
    }
   ],
   "headerTitleWeight": "Regular",
@@ -75,7 +75,7 @@ window.SITE_DATA={
    "background": ""
   },
   "topBarColor": "#0b1a33",
-  "tickerColor": "#0a2a6b",
+  "tickerColor": "#4b0387",
   "tickerTextColor": "#ffffff",
   "menuTextColor": "#ffffff",
   "headerHeight": 100,
@@ -83,7 +83,7 @@ window.SITE_DATA={
   "tickerHeight": 100,
   "headerTintColor": "#0b1a33",
   "headerTintAmount": 0,
-  "menuStyle": "cylinder"
+  "menuStyle": "flat"
  },
  "topLinks": [],
  "menu": [
@@ -458,7 +458,7 @@ window.SITE_DATA={
    }
   ]
  },
- "rev": 1794191934786,
+ "rev": 1794247923329,
  "v": 5,
  "fontsV": 3,
  "tagV": 1
