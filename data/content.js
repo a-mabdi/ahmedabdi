@@ -115,14 +115,14 @@ window.SITE_DATA={
  ],
  "ticker": [
   {
-   "tag": "NEWS IN BRIEF",
-   "text": "Government unveils new infrastructure reform",
-   "url": ""
+   "tag": "SOMALILAND",
+   "text": "Somaliland Emojis: Share Your National Symbols with the World",
+   "url": "/teck/somaliland-emojis-share-your-national-symbols-with-the-world"
   },
   {
-   "tag": "STUDIO NEWS",
-   "text": "Ahmedabdi.uk launches new flagship morning show",
-   "url": "#/a/the-somaliland-age-launches-new-flagship-morning-show"
+   "tag": "SITE NEWS",
+   "text": "Ahmedabdi.uk: News Worth Your Time",
+   "url": "/about/ahmedabdi-uk-news-worth-your-time"
   },
   {
    "tag": "SPORT",
@@ -203,20 +203,22 @@ window.SITE_DATA={
   },
   {
    "category": "News",
-   "title": "Ahmedabdi.uk launches new flagship morning show",
-   "summary": "A fresh look, a new set, and an expanded panel join the network this autumn.",
-   "image": "images/placeholder-3.jpg",
+   "title": "Somalilanders digital presence.",
+   "summary": "he push for digital representation is often framed as a matter of convenience or aesthetic choice, but for the 6.5 million people of Somaliland, it cuts straight to the core of national identity and global visibility. In an era where human interaction has largely migrated to screens, emojis and digital icons have become a universal language. They are the shorthand of modern communication, used to express pride, community, and belonging. Yet, when Somalilanders open their device keyboards to share their story with the world, they are met with a glaring, empty void.",
+   "image": "images/1794334779246-somalilandflag-emoji.png",
    "url": "",
    "flags": {
     "hero": true,
-    "inDepth": false,
-    "card": false,
+    "inDepth": true,
+    "card": true,
     "trending": true,
-    "editors": false,
+    "editors": true,
     "headline": true
    },
    "slug": "the-somaliland-age-launches-new-flagship-morning-show",
-   "body": "<p>A fresh look, a new set, and an expanded panel join the network this autumn.</p><p>This is placeholder text. Open <b>Login</b>, go to <b>Articles</b> and press <b>Edit</b> to write the real story with the rich-text editor.</p>"
+   "body": "<p><br>The push for digital representation is often framed as a matter of convenience or aesthetic choice, but for the 6.5 million people of Somaliland, it cuts straight to the core of national identity and global visibility. In an era where human interaction has largely migrated to screens, emojis and digital icons have become a universal language. They are the shorthand of modern communication, used to express pride, community, and belonging. Yet, when Somalilanders open their device keyboards to share their story with the world, they are met with a glaring, empty void. The omission of their national flag and emblem from the official Unicode registry is not just a technical oversight; it feels like a digital erasure of their entire culture.</p><p><br></p><p>For over three decades, Somaliland has operated with its own democratic government, its own currency, its own military, and a deeply resilient population. Despite these undeniable realities on the ground, the lack of official international recognition follows its people into the digital sphere. When a community cannot wave its flag online, it is effectively rendered invisible on the very platforms where global narratives are shaped every second. To type a comment on Facebook, share a thought on X, or send a message on WhatsApp without the ability to anchor that thought with a native flag is a quiet but constant reminder of exclusion. It leaves millions of people feeling like spectators in a digital world that everyone else takes for granted.</p><p><br></p><p>This is why creating and deploying custom digital icons for Somaliland is such a massive milestone. It is a grassroots act of digital sovereignty. By bypassing the bureaucratic stagnation of international tech consortiums, this initiative hands the power back to the community. It allows 6.5 million voices—both at home and across a vast global diaspora—to finally speak in their own graphic shorthand. When a Somaliland user types a shortcode and sees their vibrant green, white, and red flag ripple smoothly inline with their words, it validates their existence. It signals to the world that their identity is real, their culture is thriving, and their presence on the internet cannot be filtered out.</p><p><br></p><p>Ultimately, this project is about dignity and inclusivity. It ensures that a generation growing up online does not have to compromise on who they are when they log in. Digital icons may look small on a phone screen, but the weight they carry is immense. Giving Somalilanders their flag online is a powerful statement: it proves that identity is defined by the people who live it, not by the software configurations of Silicon Valley. It marks the moment a thriving global community refuses to be left behind, claiming its rightful, visible place on the modern web.</p>",
+   "authorLinks": [],
+   "author": "A. Abdi"
   },
   {
    "category": "Opinions",
@@ -484,7 +486,7 @@ window.SITE_DATA={
    }
   ]
  },
- "rev": 1794327861928,
+ "rev": 1794334896000,
  "v": 5,
  "fontsV": 3,
  "tagV": 1
