@@ -271,82 +271,27 @@ body.pvframe .lg,body.pvframe .lg2,body.pvframe #sv{display:none!important}
 @media(max-width:700px){.pvt{padding:6px 8px}.pvt button{padding:7px 9px;font-size:12px}.pvt .pvi{display:none}}
 html.pvframe,html.pvframe body{scrollbar-width:none;-ms-overflow-style:none}html.pvframe::-webkit-scrollbar,body.pvframe::-webkit-scrollbar{display:none;width:0;height:0}
 
-/* ===== v2.0.9: fixed top on phones/tablets, footer name + contact ===== */
-.stk{display:contents}
-@media(max-width:1024px){
- .stk{display:block;position:sticky;top:0;z-index:40}
- .stk.open{max-height:100vh;max-height:100dvh;overflow-y:auto}
- .stk nav{position:static;max-height:none;overflow:visible}
- [id^="anc-"],.art h2,.art h3{scroll-margin-top:150px}
-}
-.ft h4.fname{font-size:var(--ns,30px);font-weight:400;line-height:1.1;margin:0 0 8px;letter-spacing:.01em}
-.fct{margin:8px 0 4px;color:var(--fl);font-size:15px;line-height:1.6;overflow-wrap:anywhere}
-.fct a,.ft .fct a{display:inline;padding:0;color:var(--fl);text-decoration:underline}
-@media(max-width:700px){.ft h4.fname{font-size:min(var(--ns,30px),28px);margin:0 0 4px}.fct{font-size:14px;margin:4px 0}}
-.fct .cl{display:inline-block;min-width:60px;color:var(--fm);font-size:.9em}
-.fct.fph{border:1px dashed #ffffff66;border-radius:6px;padding:8px 10px;color:var(--fm);cursor:pointer}.fct.fph:hover{background:#ffffff14}
+/* ===== v2.1.3: article byline (writer, social icons, share, date) in a faint frame above the picture ===== */
+.byl{border:1px solid #eceef3;background:#fbfbfd;border-radius:8px;padding:9px 14px;margin:12px 0 6px}
+.byl .byn{display:flex;align-items:center;flex-wrap:wrap;gap:6px 16px;line-height:1.3}
+.byl .bnm{color:#8d929d;font-size:15px;font-weight:600}
+.byl .byi{display:flex;align-items:center;gap:10px}
+.byl a.bys{display:flex;flex:none;opacity:.85}.byl a.bys:hover{opacity:1}
+.byl .byi img{width:18px;height:18px;object-fit:contain;display:block}
+.byl .byshare{display:inline-flex;align-items:center;gap:5px;border:1px solid #e3e6ee;background:transparent;color:#9aa0ac;border-radius:14px;padding:2px 10px;font:600 12px var(--f);cursor:pointer}
+.byl .byshare:hover{color:#6b7280;border-color:#cfd4df}
+.byl .byd{color:#b4b9c3;font-size:13px;font-weight:400;margin-top:3px;line-height:1.3}
 
-/* v2.0.9: colour-coded icons with a transparent background; the black ones (TikTok, X) get a hairline white glow so they show on the dark blue bar */
-.soc a,nav .soc a{background:transparent!important;transition:transform .15s}
-.soc a:hover,nav .soc a:hover{background:transparent!important;transform:scale(1.12)}
-.soc a.si-tiktok img,.soc a.si-x img{filter:drop-shadow(0 0 .6px #fff) drop-shadow(0 0 .6px #fff)}
-
-/* ===== Ahmedabdi.uk ===== */
-/* shorter header: the picture is cropped (never stretched), flag and skyline kept in view */
-#hd.bnr{height:calc(clamp(80px,8.4vw,140px)*var(--hh,1))}
-#hd.bnr img:not(.hlogo){object-position:50% 46%}
-#hd .htxt{top:50%}#hd .ht2{text-shadow:0 1px 4px #02081a,0 0 8px #02081a}
-@media(max-width:1024px){#hd.bnr{height:calc(clamp(50px,11vw,84px)*var(--hh,1))}}
-@media(max-width:600px){#hd.bnr{height:calc(clamp(50px,15.4vw,104px)*var(--hh,1))}}
-/* breaking news bar: deep blue */
-/* footer: lighter dark navy, shorter, with the shiny green on the right like the header */
-.ft{margin-top:30px!important}
-.ft .fb{position:relative;overflow:hidden;padding:12px 5% 8px}
-.ft .fb::after{content:'';position:absolute;right:0;top:0;bottom:0;width:55%;background:url(images/swoosh.png) 108% 62%/auto 300% no-repeat;opacity:.9;pointer-events:none;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 55%);mask-image:linear-gradient(to right,transparent 0,#000 55%)}
-.ft .fg,.ft .cp{position:relative;z-index:1}
-.ft .fg{gap:20px}.ft .cp{margin-top:12px;padding-top:8px}
-.ft h4{margin-bottom:6px}.ft a{padding:2px 0}
-.ft .fls{display:flex;flex-wrap:wrap;gap:0 18px}.ft .fls a{display:inline-block}
-@media(max-width:700px){.ft .fb{padding:10px 8px 6px}.ft .fb::after{width:50%;background-size:auto 190%;background-position:112% 55%}.ft .fls a{padding:3px 0}}
-/* readable name over the bright picture: soft dark-blue haze behind the text only */
-#hd.bnr::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 30% 100% at 50% 50%,rgba(4,18,58,.78),rgba(4,18,58,.45) 60%,transparent 100%)}
-#hd .htxt,#hd img.hlogo,#hd .soc{z-index:2}
-#hd .ht1{text-shadow:0 2px 6px #02081a,0 0 14px #02081a}
-.hwrap .soc-d{background:rgba(2,8,26,.5);padding:4px 8px;border-radius:30px}
-@media(max-width:700px){.hwrap .soc-d{padding:3px 6px}.soc-d a{width:22px!important;height:22px!important}}
-@media(max-width:1024px){.soc-m a,nav .soc-m a{width:clamp(22px,6vw,28px)!important;height:clamp(22px,6vw,28px)!important}}
-
-/* ===== v2.0.9 phones: a little more breathing room around the slideshow and at the sides ===== */
-@media(max-width:700px){
- .g,.below{padding:0 6px}
- .g{margin:14px auto 8px}
- .sl{margin-bottom:8px}
-}
-/* Ahmedabdi.uk phones: slimmer menu bar, bigger name that stays clear of the top edge and the menu bar */
-@media(max-width:700px){
- #hd.bnr{height:calc(clamp(84px,23vw,130px)*var(--hh,1))}
- #hd .ht1{font-size:13cqw!important;line-height:1.05}
- #hd .ht2{font-size:max(7px,2.5cqw)!important;letter-spacing:.16em;margin-top:.55em}
- #hd .htxt{top:52%}
- .nrow{min-height:36px}
- .hb{padding:2px 0;font-size:14px}
- .soc-m a,nav .soc-m a{width:clamp(22px,5.6vw,28px)!important;height:clamp(22px,5.6vw,28px)!important}
- .sbtn{width:clamp(26px,7vw,32px);height:clamp(26px,7vw,32px)}
- .sbox input{height:clamp(26px,7vw,32px)}
-}
-
-/* ===== v2.0.9: header and footer colour / size / shape controls ===== */
-:root{--nrh:46px}
-@media(max-width:700px){:root{--nrh:36px}}
-nav a{padding-top:calc(10px*var(--mh,1));padding-bottom:calc(10px*var(--mh,1))}
-.nrow{min-height:calc(var(--nrh,46px)*var(--mh,1))}
-.hb{color:var(--mt,#fff)}
-.tick b{padding-top:calc(8px*var(--tkh,1));padding-bottom:calc(8px*var(--tkh,1))}.tr{padding:calc(8px*var(--tkh,1)) 0}
-@media(max-width:1024px){nav .nl a{padding-top:calc(14px*var(--mh,1));padding-bottom:calc(14px*var(--mh,1))}.tick b{padding-top:calc(7px*var(--tkh,1));padding-bottom:calc(7px*var(--tkh,1))}.tr{padding:calc(7px*var(--tkh,1)) 0}}
-#hd.bnr::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:var(--htint,transparent)}
-#hd .htxt,#hd img.hlogo,#hd .soc{z-index:2}
-/* cylinder-shaped menu bar */
-nav.cyl{background:linear-gradient(180deg,color-mix(in srgb,var(--m),#fff 26%) 0%,color-mix(in srgb,var(--m),#fff 8%) 34%,var(--m) 52%,color-mix(in srgb,var(--m),#000 34%) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 4px rgba(0,0,0,.45),0 2px 5px rgba(0,0,0,.25)}
-nav.cyl a:hover{background:rgba(255,255,255,.18)}
-.ft.ng .fb::after{display:none}
-.ft .fb::after{opacity:var(--gs,.9)}
+/* ===== v2.1.3: share panel ===== */
+.byl{position:relative}
+.shp{position:absolute;left:10px;top:calc(100% - 6px);z-index:40;width:min(350px,calc(100% - 20px));background:#fff;border:1px solid #e3e6ee;border-radius:12px;box-shadow:0 10px 28px rgba(15,25,50,.16);padding:12px 14px}
+.shp .sht{font:700 13px var(--f);color:#6b7280;margin-bottom:10px}
+.shp .shi{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.shp .shi a{display:flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:50%;transition:transform .12s}
+.shp .shi a:hover{transform:scale(1.12)}
+.shp .shi img{width:30px;height:30px;object-fit:contain;display:block}
+.shp .shm{min-height:16px;font-size:12px;color:#2f8f4e;margin:6px 0 2px}
+.shp .shl{display:flex;gap:6px;align-items:center}
+.shp .shl input{flex:1;min-width:0;border:1px solid #e3e6ee;border-radius:8px;padding:7px 9px;font:13px var(--f);color:#6b7280;background:#fafbfc}
+.shp .shcopy{flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid #e3e6ee;border-radius:8px;background:#fff;color:#6b7280;cursor:pointer}
+.shp .shcopy:hover{background:#f1f4f9;color:#1769e0}

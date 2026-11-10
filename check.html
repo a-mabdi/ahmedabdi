@@ -10,7 +10,7 @@ small{color:#55607a;display:block}#sum{font-weight:700;margin:14px 0}</style></h
 <div id="sum">Checking...</div><div id="out"></div>
 <p><small>Page address: <span id="loc"></span></small></p>
 <script>
-const EXPECT='2.0.9';document.getElementById('exp').textContent=EXPECT;document.getElementById('loc').textContent=location.href;
+const EXPECT='2.1.3';document.getElementById('exp').textContent=EXPECT;document.getElementById('loc').textContent=location.href;
 const rows=[
  ['script.js (the site code)','script.js',t=>{const m=t.match(/CODE_VERSION='([\d.]+)'/);return m?{ok:m[1]===EXPECT,msg:'version '+m[1]}:{ok:false,msg:'no version found - this is an old script.js'}}],
  ['styles.css (the layout)','styles.css',t=>({ok:/v2\.0\.8/.test(t),msg:/v2\.0\.8/.test(t)?'new layout found':'old layout - the new styles.css is not live'})],

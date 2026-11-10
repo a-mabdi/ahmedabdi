@@ -1,6 +1,6 @@
 /* The Somaliland Age - site renderer, routing, login, instant saving. The dashboard lives in admin.js (loaded only after login). Code version 2.0.2 */
 (()=>{
-const CODE_VERSION='2.0.9';
+const CODE_VERSION='2.1.3';
 const PKG={ticker:'#0a2a6b',cyl:true,green:true};
 const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const slug=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
@@ -56,7 +56,7 @@ document.addEventListener('click',e=>{if(e.defaultPrevented||e.button||e.metaKey
  if(a.classList.contains('lg')&&logged())return;
  const p=internal(h);if(p===null)return;e.preventDefault();nav(p)});
 /* ---- safe rich text ---- */
-const OK=new Set('P BR B I U STRONG EM A BLOCKQUOTE H2 H3 UL OL LI SPAN DIV FONT'.split(' ')),DROP=new Set('SCRIPT STYLE IFRAME OBJECT EMBED LINK META SVG FORM INPUT'.split(' '));
+const OK=new Set('P BR B I U STRONG EM A BLOCKQUOTE H2 H3 UL OL LI SPAN DIV FONT HR'.split(' ')),DROP=new Set('SCRIPT STYLE IFRAME OBJECT EMBED LINK META SVG FORM INPUT'.split(' '));
 const CSSOK=['color','font-family','font-weight','font-style','text-decoration','background-color','text-shadow','-webkit-text-stroke','paint-order'];
 function clean(h){const t=document.createElement('template');t.innerHTML=h||'';
  (function w(n){[...n.childNodes].forEach(c=>{if(c.nodeType===3)return;if(c.nodeType!==1){c.remove();return}
@@ -65,6 +65,9 @@ function clean(h){const t=document.createElement('template');t.innerHTML=h||'';
    if(!ok){c.remove();return}
    const keep={k,id:k==='file'?'':d.id,src:k==='file'?d.src:'',w:Math.min(100,Math.max(10,+d.w||100)),a:['left','center','right'].includes(d.a)?d.a:'center',r:['16:9','4:3','3:2','1:1','21:9','9:16'].includes(d.r)?d.r:'16:9',c:d.c==='0'?0:1,ap:d.ap==='1'?1:0,lp:d.lp==='1'?1:0};
    [...c.attributes].forEach(a=>c.removeAttribute(a.name));c.className='vid';c.textContent='';Object.entries(keep).forEach(([x,y])=>{if(y!==''&&y!=null)c.setAttribute('data-'+x,y)});return}
+  if(c.tagName==='IMG'){const src=c.getAttribute('src')||'',al=c.getAttribute('alt')||'',wd=Math.min(100,Math.max(10,parseInt(c.getAttribute('data-w')||(c.style.width||'100'),10)||100));
+   if(!/^(images\/[A-Za-z0-9_\-.]+|data:image\/(png|jpeg|gif|webp);base64,[A-Za-z0-9+\/=]+|https:\/\/[^\s"'<>]+)$/.test(src)){c.remove();return}
+   [...c.attributes].forEach(x=>c.removeAttribute(x.name));c.setAttribute('src',src);c.setAttribute('alt',al.slice(0,200));c.setAttribute('data-w',wd);c.setAttribute('style','width:'+wd+'%');c.setAttribute('loading','lazy');return}
   w(c);
   if(!OK.has(c.tagName)){c.replaceWith(...[...c.childNodes]);return}
   const st=[];CSSOK.forEach(p=>{const v=c.style.getPropertyValue(p);if(v&&!/url\(|expression/i.test(v))st.push(p+':'+v)});
@@ -159,7 +162,7 @@ const AMA=window.AMA={openPreview:()=>openPreview(),E,slug,clean,render,api,tok,
  logout(){localStorage.removeItem(TK);if(window.Admin)Admin.close(true);render()}};
 window.addEventListener('beforeunload',e=>{if(saving||pt&&again){e.preventDefault();e.returnValue=''}});
 function normalize(){const S=D.site;const dflt={headerTitle:S.name||'',headerTagline:'',headerShowText:true,headerTitleColor:'#ffffff',headerTaglineColor:'#9db4d6',headerTitleSize:5.4,headerTaglineSize:1.25,headerTextLeft:16.5,headerTextAlign:'center',logoOffset:8,headerStyle:'banner',headerFont:"'Chomsky'",headerFontFile:'',headerTitleWeight:'Regular',headerTitleItalic:'Normal',headerTitleUnderline:'None',headerTitleCase:'As typed',headerTitleSpacing:1,showSocial:true,social:[{network:'TikTok',url:''},{network:'YouTube',url:''},{network:'Facebook',url:''},{network:'X',url:''},{network:'Instagram',url:''}]};for(const k in dflt)if(S[k]===undefined)S[k]=dflt[k];['titleFx','taglineFx'].forEach(k=>{S[k]=Object.assign({shadow:'None',shadowColor:'#000000',outline:'None',outlineColor:'#000000',glow:'None',glowColor:'#ffd166',background:''},S[k]||{})});if(!D.tagV){if(!S.headerTagline)S.headerTagline='Independent news, broadcasting & analysis.';D.tagV=1}if((D.fontsV||0)<3){if(!S.headerFontFile&&(!S.headerFont||/SiteMasthead|Chomsky/.test(S.headerFont)))S.headerFont="'Chomsky'";D.fontsV=3}/* v2.0.9: header / footer colour, size and shape controls (filled in only when missing, so nothing already saved changes) */
-{const d2={topBarColor:'#0b1a33',tickerColor:PKG.ticker,tickerTextColor:'#ffffff',menuTextColor:'#ffffff',headerHeight:100,menuHeight:100,tickerHeight:100,headerTintColor:'#0b1a33',headerTintAmount:0};if(PKG.cyl)d2.menuStyle='cylinder';for(const k in d2)if(S[k]===undefined)S[k]=d2[k];
+{const d2={defaultAuthor:'A. M. Abdi',topBarColor:'#0b1a33',tickerColor:PKG.ticker,tickerTextColor:'#ffffff',menuTextColor:'#ffffff',headerHeight:100,menuHeight:100,tickerHeight:100,headerTintColor:'#0b1a33',headerTintAmount:0};if(PKG.cyl)d2.menuStyle='cylinder';for(const k in d2)if(S[k]===undefined)S[k]=d2[k];
  const F=D.footer||(D.footer={}),f2={waveShape:'wave',spaceAdjust:0};if(PKG.green){f2.showGreen=true;f2.greenStrength=90}for(const k in f2)if(F[k]===undefined)F[k]=f2[k]}
 D.home.blocks=(D.home.blocks||[]).map(b=>({type:'bento',anchor:'',...b}));if(S.logo===undefined)S.logo='images/logo.png';if(!S.logoPosition)S.logoPosition='left';if(S.logoSize===undefined)S.logoSize=70;D.pages=(D.pages||[]).map(p=>({parent:'',inMenu:false,...p}))}
 let migratedPending=false;
@@ -290,7 +293,7 @@ function home(){const hero=F('hero'),M=D.home;
  ${M.showHeroCards?`<div class="cs" style="--cols:${+M.heroCardColumns||3}">${F('card').map(card).join('')}</div>`:''}`,below:`<div class="below">${renderBlocks(M.blocks,'home')}</div>`}}
 function article(a){
  const rel=D.articles.filter(x=>x!==a&&x.category===a.category).slice(0,4);
- return {title:a.title,mid:`<article class="art"><div class="tg">${E(a.category)}</div><h1>${E(a.title)}</h1><p class="dk">${E(a.summary)}</p>${a.image?`<img class="aimg" src="${E(a.image)}" alt="${E(a.title)}">`:''}<div class="body">${clean(a.body)}</div>${logged()?`<p><button class="ea" data-edit="${E(artSlug(a))}">✏️ Edit this article</button></p>`:''}</article>${renderBlocks(a.blocks,'a:'+artSlug(a))}${rel.length?`<section class="bx"><h2><span>More in ${E(a.category)}</span></h2><div class="gr">${rel.map(tile).join('')}</div></section>`:''}`}}
+ return {title:a.title,mid:`<article class="art"><div class="tg">${E(a.category)}</div><h1>${E(a.title)}</h1><p class="dk">${E(a.summary)}</p>${bylineHTML(a)}${a.image?`<img class="aimg" src="${E(a.image)}" alt="${E(a.title)}">`:''}<div class="body">${clean(a.body)}</div>${logged()?`<p><button class="ea" data-edit="${E(artSlug(a))}">✏️ Edit this article</button></p>`:''}</article>${renderBlocks(a.blocks,'a:'+artSlug(a))}${rel.length?`<section class="bx"><h2><span>More in ${E(a.category)}</span></h2><div class="gr">${rel.map(tile).join('')}</div></section>`:''}`}}
 function section(c){const L=D.articles.filter(a=>a.category.toLowerCase()===c.toLowerCase());
  return {title:c,mid:`<section class="bx"><h2><span>${E(c)}</span></h2>${L.length?`<div class="cs">${L.map(card).join('')}</div>`:'<p>No articles in this section yet.</p>'}</section>`}}
 function notFound(q){const words=String(q||'').split(/[-\s]+/).filter(w=>w.length>3).map(w=>w.toLowerCase()),hit=D.articles.filter(a=>words.some(w=>(a.title+' '+artSlug(a)).toLowerCase().includes(w))).slice(0,6),L=hit.length?hit:D.articles.slice(0,6);
@@ -342,6 +345,36 @@ function openPreview(){closePreview();
  fit();
  // wait for a save that is still running, then show the saved version
  let n=0;const t=setInterval(()=>{if(!saving||++n>30){clearInterval(t);load()}},100)}
+/* ---- article byline: writer, their social handles and the date, in a faint frame above the picture ---- */
+const BYB={tiktok:'https://www.tiktok.com/@',youtube:'https://www.youtube.com/@',facebook:'https://www.facebook.com/',x:'https://x.com/',instagram:'https://www.instagram.com/'};
+function fmtDate(d){d=String(d||'').trim();if(!d)return '';if(/^\d{4}-\d{2}-\d{2}$/.test(d)){const t=new Date(d+'T12:00:00');if(!isNaN(t))return t.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}return d}
+const todayISO=()=>{const t=new Date(),p=n=>String(n).padStart(2,'0');return t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate())};
+const SHARE_SVG='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg>';
+function bylineHTML(a){const nm=String(a.author===undefined?((D.site&&D.site.defaultAuthor)||''):a.author).trim(),dt=fmtDate(a.date===undefined?todayISO():a.date);
+ const ic=(a.authorLinks||[]).map(x=>{const k=String(x&&x.network||'').toLowerCase().replace(/[^a-z]/g,''),h=String(x&&x.handle||'').trim();if(!BYB[k]||!h)return '';
+  let u;if(/^https?:\/\//i.test(h))u=h;else{const id=h.replace(/^@+/,'').replace(/[^A-Za-z0-9._-]/g,'');if(!id)return '';u=BYB[k]+id}
+  const label=/^https?:/i.test(h)?(SOC[k]?SOC[k].n:k):'@'+h.replace(/^@+/,'');
+  return `<a class="bys" href="${E(u)}" target="_blank" rel="noopener" title="${E(label)}" aria-label="${E(label)}"><img src="images/${k}.png?v=${CODE_VERSION}" alt="" width="18" height="18" draggable="false"></a>`}).join('');
+ const url=location.protocol==='file:'?location.href:location.origin+artPath(a);
+ const sh=`<button type="button" class="byshare" data-u="${E(url)}" data-t="${E(a.title)}" title="Share this article">${SHARE_SVG}<span>Share</span></button>`;
+ return `<div class="byl"><div class="byn">${nm?`<span class="bnm">${E(nm)}</span>`:''}${ic?`<span class="byi">${ic}</span>`:''}${sh}</div>${dt?`<div class="byd">${E(dt)}</div>`:''}</div>`}
+/* ---- share panel: social icons + the article link with a copy button ---- */
+const COPY_SVG='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+async function copyText(t){try{await navigator.clipboard.writeText(t);return true}catch(x){try{const i=document.createElement('input');i.value=t;document.body.append(i);i.select();const ok=document.execCommand('copy');i.remove();return ok}catch(y){return false}}}
+function closeShare(){document.querySelectorAll('.shp').forEach(p=>p.remove())}
+function openShare(b){const u=b.dataset.u,t=b.dataset.t,eu=encodeURIComponent(u),et=encodeURIComponent(t),host=b.closest('.byl');
+ const N=[['facebook','Facebook','https://www.facebook.com/sharer/sharer.php?u='+eu,0],['x','X','https://x.com/intent/post?text='+et+'&url='+eu,0],['instagram','Instagram','https://www.instagram.com/',1],['tiktok','TikTok','https://www.tiktok.com/',1],['youtube','YouTube','https://www.youtube.com/',1]];
+ const p=document.createElement('div');p.className='shp';p.setAttribute('role','dialog');p.setAttribute('aria-label','Share this article');
+ p.innerHTML=`<div class="sht">Share this article</div><div class="shi">${N.map(([k,n,h,c])=>`<a href="${E(h)}" target="_blank" rel="noopener" class="${c?'shc':''}" title="${n}${c?' (the link is copied for you to paste)':''}" aria-label="${n}"><img src="images/${k}.png?v=${CODE_VERSION}" alt="" width="30" height="30" draggable="false"></a>`).join('')}</div><div class="shm" aria-live="polite"></div><div class="shl"><input type="text" readonly value="${E(u)}" aria-label="Article link"><button type="button" class="shcopy" title="Copy link">${COPY_SVG}</button></div>`;
+ host.append(p);const inp=p.querySelector('input'),msg=p.querySelector('.shm');
+ const say=m=>{msg.textContent=m};
+ p.querySelector('.shcopy').onclick=async()=>{inp.select();say(await copyText(u)?'Link copied ✓':'Press Ctrl+C to copy the link')};
+ inp.onfocus=()=>inp.select();
+ p.querySelectorAll('a.shc').forEach(a=>a.addEventListener('click',async()=>{say(await copyText(u)?'Link copied - paste it into your post':'')}))}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.byshare');
+ if(b){e.preventDefault();const had=b.closest('.byl').querySelector('.shp');closeShare();if(!had)openShare(b);return}
+ if(!(e.target.closest&&e.target.closest('.shp')))closeShare()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeShare()});
 /* ---- footer contact lines: emails, phone numbers and web addresses become clickable ---- */
 function cblock(c){const L=[],em=String(c.email||'').trim(),ph=String(c.phone||'').trim(),ad=String(c.address||'').trim();
  if(em)L.push('<div><span class="cl">Email</span> <a href="mailto:'+E(em)+'">'+E(em)+'</a></div>');
