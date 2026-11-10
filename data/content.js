@@ -20,7 +20,7 @@ window.SITE_DATA={
   "headerTagline": "News, comment & analysis.",
   "headerShowText": true,
   "headerFont": "'Chomsky'",
-  "headerFontFile": "fonts/1793934078403-BastligaOne.otf",
+  "headerFontFile": "fonts/1794327861080-bastligaone.otf",
   "headerTitleColor": "#ffffff",
   "headerTaglineColor": "#ffffff",
   "headerTitleSize": 6,
