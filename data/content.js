@@ -21,8 +21,8 @@ window.SITE_DATA={
   "headerShowText": true,
   "headerFont": "'Chomsky'",
   "headerFontFile": "fonts/1794327861080-bastligaone.otf",
-  "headerTitleColor": "#ffffff",
-  "headerTaglineColor": "#ffffff",
+  "headerTitleColor": "#050000",
+  "headerTaglineColor": "#1808f7",
   "headerTitleSize": 6,
   "headerTaglineSize": 1,
   "headerTextLeft": 25,
@@ -484,7 +484,7 @@ window.SITE_DATA={
    }
   ]
  },
- "rev": 1794272148519,
+ "rev": 1794327861928,
  "v": 5,
  "fontsV": 3,
  "tagV": 1
